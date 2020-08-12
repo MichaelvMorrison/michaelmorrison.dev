@@ -1,0 +1,119 @@
+body{
+  font-family: 'Montserrat', sans-serif;
+  color: #292929;
+  background-color: #fff;
+  transition: background-color 1000ms ease-in, color 1000ms ease-in;
+}
+
+section{
+  margin-bottom: 2rem;
+}
+
+h2, h2, h3 {
+  font-family: 'Major Mono Display', monospace;
+}
+
+h2{
+  font-size: 3.5rem;
+}
+
+p{
+  font-size: 1.1rem;
+}
+
+ul{
+  margin: .5rem 0 0 1rem;
+  padding: 0;
+}
+
+li:before{
+  content: '🌺';
+  margin-left: -20px;
+  margin-right: 10px;
+}
+
+a{
+  color: #13A00E;
+}
+
+a:hover{
+  color: #13A00E;
+}
+
+#about{
+  margin-top: 1000px;
+}
+
+#pictures img{
+  width: 20%;
+}
+
+.back{
+  z-index: 1;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+}
+
+.lights{
+  z-index: 1;
+  color: #13A00E;
+  position: fixed;
+  top: 0%;
+  right: 0%;
+}
+
+.lights:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.shapes div{
+  width: 200px;
+  max-width: 200px;
+  height: 200px;
+  max-height: 200px;
+  position: fixed;
+}
+
+.circle{
+  opacity: 0.4;
+  border-radius: 50%;
+  background-color: yellow;
+  top: calc(12% - 100px);
+  left: calc(73% - 100px);
+  transition: background-color 1000ms ease-in;
+}
+
+.square{
+  opacity: 0.2;
+  background-color: red;
+  top: calc(43% - 100px);
+  left: calc(17% - 100px);
+}
+
+.triangle{
+  opacity: 0.3;
+  width: 0;
+  height: 0;
+  border-bottom: 200px solid blue;
+  border-top: 200px solid transparent;
+  border-right: 100px solid transparent;
+  border-left: 100px solid transparent;
+  top: calc(73% - 300px);
+  left: calc(59% - 100px);
+}
+
+@media only screen and (max-width: 768px) {
+  h2{
+    font-size: 2.5rem;
+  }
+
+  p{
+    font-size: 1.0em;
+  }
+
+  #pictures img{
+    width: 30%;
+  }
+}

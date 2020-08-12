@@ -1,0 +1,53 @@
+html,body{
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.about{
+  font-family: 'Barlow';
+  font-size: 1rem;
+  z-index: 1;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+}
+
+.about a{
+  color: white;
+}
+
+.about a:hover{
+  color: pink;
+}
+
+.shots{
+  overflow-y: scroll;
+  height: 100%;
+  scroll-snap-type: mandatory;
+  scroll-snap-points-y: repeat(100%);
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.shots::-webkit-scrollbar {
+  display: none;
+}
+
+.shot{
+  height: 100%;
+  scroll-snap-align: start;
+  position: relative;
+}
+
+.shot-text{
+  font-family: 'Barlow';
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+}
+
+.shot-number, .shot-date{
+  margin-bottom: 0;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, ie=edge">
+    <title>About</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans&display=swap">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/cinema_about.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vide/0.5.1/jquery.vide.min.js"></script>
+    <script src="js/cinema_about.js"></script>
+  </head>
+  <body>
+    <h4 class="back"><a href="cinema.html">&larrsim; Back</a></h4>
+    <div class="container-fluid">
+      <div id="contentRow" class="row middle text-center">
+        <div class="col-lg-4 mb-4 mt-5">
+          <img id="leftImg" class="left-image middle" src="img/1.jpg" alt="a shot of mine" />
+        </div>
+        <div class="col-lg-8 mb-2">
+          <article class="cinema">
+            <section>
+              <h2>How it works</h2>
+              <p>The <a href="cinema.html">cinema</a> page will show you 5 shots at random. If you wish to see 5 new—random—shots, simply reload the page. HTML5 video does not work on
+                mobile so if you're on mobile you'll just be seeing 5 stills. I store all the videos by number (1.mp4,2.mp4,3.mp4,...,n.mp4) and keep their information (like the rough date at which I shot them)
+                in a corresponding JSON file. To load 5 of them at random, I create an array of values [1,2,3,...,n] and then perform a <a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates shuffle</a>
+                on the array and take the first 5 values which will correspond to the 5 videos that are loaded.</p>
+            </section>
+            <section>
+              <h2>Selection</h2>
+              <p>All of the shots on the <a href="cinema.html">cinema</a> page, and any where else on this website for that matter, are my own. I shoot with a Panasonic Lumix GH5. The amount of total possible shots on the page
+              is not static; I would like to add at least 100 shots.</p>
+            </section>
+            <section>
+              <h2>Compression</h2>
+              <p>In order for your browser to load 5 FHD videos in a reasonable amount of time I must compress them quite heavily. The shots are typically around
+                10 seconds in length and I compress them to be under 5MB. The raw video files I shoot can have bitrates of up to 400MB/s. Most
+                of the shots I shoot in 59.94 FPS and I slow down to 23.97 FPS in post leaving a raw bitrate of about 160 MB/s (1.6 GB per 10 seconds). This
+                means I am compressing the shots, in terms of bitrate, by about 99.5%. The raw videos are shot in 59.94 FPS at 4K while I export at 23.97 FPS at 1080p
+                which does help, but not enough to not need to compress the videos further. If HTML5 supported the HEVC (h.265) codec I would be able to upload much higher
+                quality version of my shots at a much lower bitrate, but the best option right now is the h.264 codec. At some point I would like to create a way for the user
+                (you) to access the raw video files for each of the shots if you so please, but right now I don't have anything like that set up.</p>
+            </section>
+          </article>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
