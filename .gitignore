@@ -105,3 +105,6 @@ dist
 
 # Secret Stuff
 dev
+
+#webpack
+webpack.config.js
