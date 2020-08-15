@@ -6,14 +6,14 @@
     <title>About</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans&display=swap">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/cinema_about.css" />
+    <link rel="stylesheet" type="text/css" href="css/about.css" />
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vide/0.5.1/jquery.vide.min.js"></script>
-    <script src="js/cinema_about.js"></script>
+    <script src="js/about.js"></script>
   </head>
   <body>
-    <h4 class="back"><a href="cinema.html">&larrsim; Back</a></h4>
+    <h4 class="back"><a href="/cinema">&larrsim; Back</a></h4>
     <div class="container-fluid">
       <div id="contentRow" class="row middle text-center">
         <div class="col-lg-4 mb-4 mt-5">
@@ -23,7 +23,7 @@
           <article class="cinema">
             <section>
               <h2>How it works</h2>
-              <p>The <a href="cinema.html">cinema</a> page will show you 5 shots at random. If you wish to see 5 new—random—shots, simply reload the page. HTML5 video does not work on
+              <p>The <a href="/cinema">cinema</a> page will show you 5 shots at random. If you wish to see 5 new—random—shots, simply reload the page. HTML5 video does not work on
                 mobile so if you're on mobile you'll just be seeing 5 stills. I store all the videos by number (1.mp4,2.mp4,3.mp4,...,n.mp4) and keep their information (like the rough date at which I shot them)
                 in a corresponding JSON file. To load 5 of them at random, I create an array of values [1,2,3,...,n] and then perform a <a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates shuffle</a>
                 on the array and take the first 5 values which will correspond to the 5 videos that are loaded.</p>

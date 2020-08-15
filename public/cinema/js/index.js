@@ -46,7 +46,7 @@ $(document).ready(async function(){
 
   await $.ajax({
     mimeType: "application/json",
-    url: "json/cinema.json",
+    url: "json/index.json",
     async: false,
     dataType: 'json',
     success: function(result) {
