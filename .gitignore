@@ -105,3 +105,6 @@ dist
 
 # Secret Stuff
 dev
+
+# Workspace
+ws.code-workspace
