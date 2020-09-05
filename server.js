@@ -47,6 +47,7 @@ function sendData(data){
 
 //ROUTES
 app.get('/paper', function(req, res){
+  res.set('Content-Type', 'text/javascript')
   res.sendFile(__dirname + '/node_modules/paper/dist/paper-full.min.js');
 });
 
