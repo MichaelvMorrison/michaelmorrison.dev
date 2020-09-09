@@ -1,8 +1,36 @@
 {
   "stories" : [
     {
-      "author" : "Charles Perrault",
-      "text" : "Once upon a time there was a dear little girl who was loved by every one who looked at her, but most of all by her grandmother, and there was nothing that she would not have given to the child. Once she gave her a little cap of red velvet, which suited her so well that she would never wear anything else. So she was always called Little Red Riding Hood."
+      "author" : "Dan Rolince",
+      "text" : [
+          "On a cool night lit only by the orange glow of fire, we rushed to my grandfather’s home as his decades-old barn burned to the ground. The firemen let us stand nearby as they pumped water from the creek a quarter mile away. We watched the barn go up in flames, which stirred memories of jumping off foot-wide wooden beams into the hay below. The real sadness came as my elderly grandfather, who did not get out of bed, quietly asked if his cows were safe. He hadn’t had dairy cows in a dozen years."
+      ]
+    },
+    {
+      "author" : "Lori Armstrong",
+      "text" : [
+          "I have always worn my children’s birthstones around my neck. One morning, when I was late for work, my infant son Larry’s topaz birthstone fell from my gold chain. I frantically searched for it, whispering to myself, “I lost my Larry, but I will get him back.”",
+
+          "That day, Larry’s cardiologist called with test results from one of his first checkups. He would need emergency heart surgery. Happily, the operation was a success, and I whispered in Larry’s ear, “I thought I lost you, but I knew I’d get you back.”"
+      ]
+    },
+    {
+      "author" : "Ron Fleming",
+      "text" : [
+          "While walking across an open, grassy field, I became excited as my hand swooped toward the ground like an eagle attacking its prey. I picked up half of a $5 bill. I continued to walk around looking for the other half but thought to myself it would be impossible to find it on such a windy day. As I lifted my head, I spotted the other half of the bill tangled in crabgrass. Somehow, finding two halves of a ripped $5 bill felt better than working for a twenty."
+      ]
+    },
+    {
+      "author" : "Suzanne Cifarelli",
+      "text" : [
+          "Don’t let her sleep in your bed.” That’s what I heard over and over after my daughter was born. So I didn’t, unless she was sick. Now my baby is almost six, and every night, after we read and sing songs and turn off the light, I lie down with her before she falls asleep. We whisper to each other, and I watch her eyelids start to flutter. I smell her hair and kiss her forehead. And I wish I had done this every night."
+      ]
+    },
+    {
+      "author" : "Laurie Olson",
+      "text" : [
+          "A long flight of weathered steps led to a hollow wooden door with rusty numbers beckoning us into room 1108. Inside, we barely noticed the lumpy bed, faded wood paneling, and thin, tacky carpet. We could see the seashore from our perch and easily wander down to feel the sand between our toes. We returned again and again until the burgeoning resort tore down our orange-shingled eyesore. Forty years later, my husband periodically sends me short e-mails that declare the time: 11:08. “I love you, too,” I write back."
+      ]
     }
   ]
 }

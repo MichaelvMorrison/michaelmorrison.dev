@@ -1,5 +1,6 @@
-let speed = 50;
-let i = 0;
+let delay = 50;
+let paragraph = 0;
+let letter = 0;
 let text;
 let author;
 
@@ -17,27 +18,42 @@ var sound = new Howl({
 function getStory(){
   $.get("/getStory",function(data, status){
     text = data.text;
-    author = data.author
+    author = data.author;
     readText();
   })
 }
 
+function readText(){
+  for(i in text){
+    $("body").append("<p id='p"+i+"'></p>");
+  }
+  $("body").append("<p id='author'></p>");
+  readParagraph();
+}
+
 function readAuthor(){
-  if(i < author.length){
-    $("#author").append(author.charAt(i));
-    i++;
-    setTimeout(readAuthor, speed);
+  if(letter < author.length){
+    $("#author").append(author.charAt(letter));
+    letter++;
+    setTimeout(readAuthor, delay);
   }
 }
 
-function readText(){
-  if (i < text.length) {
-    $("#text").append(text.charAt(i));
-    i++;
-    setTimeout(readText, speed);
-  }else if(i == text.length) {
-    i = 0;
-    readAuthor();
+function readParagraph(){
+  if (letter < text[paragraph].length) {
+    $("#p" + paragraph).append(text[paragraph].charAt(letter));
+    letter++;
+    setTimeout(readParagraph, delay);
+  }else if(letter == text[paragraph].length) {
+    letter = 0;
+    paragraph++;
+    if(paragraph == text.length){
+      $("#author").append("- ");
+      readAuthor();
+    }
+    else{
+      readParagraph(); 
+    }
   }
 }
 
