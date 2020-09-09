@@ -46,4 +46,5 @@ function readText(){
 $(document).ready(function(){
   getStory();
   sound.play();
+  $("body").trigger("click");
 })
