@@ -83,7 +83,6 @@ app.get('/getData', function(req, res){
 });
 
 app.get('/getStory',function(req, res){
-  console.log(__dirname);
   let rawdata = fs.readFileSync(__dirname + "/public/story/json.json");
   let stories = (JSON.parse(rawdata)).stories;
   let random = Math.floor(Math.random() * Math.floor(stories.length));
