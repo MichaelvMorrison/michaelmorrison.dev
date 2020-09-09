@@ -78,7 +78,7 @@ function onMouseUp(event){
 }
 
 function getData(){
-  $.get("/getData",function(data, status){;
+  $.get("/getData",function(data, status){
     for(var i in data){
       var _path = new Path(data[i].pathData);
       _path.strokeColor = 'black';

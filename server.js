@@ -1,6 +1,7 @@
 const express = require('express');
 const socket = require('socket.io');
 const mongoose = require('mongoose');
+const fs = require('fs');
 
 const app = express();
 const port = 3000;
@@ -80,3 +81,11 @@ app.get('/getData', function(req, res){
     }
   });
 });
+
+app.get('/getStory',function(req, res){
+  console.log(__dirname);
+  let rawdata = fs.readFileSync(__dirname + "/public/story/json.json");
+  let stories = (JSON.parse(rawdata)).stories;
+  let random = Math.floor(Math.random() * Math.floor(stories.length));
+  res.send(stories[random]);
+})

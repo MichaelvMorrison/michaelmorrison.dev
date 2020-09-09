@@ -1,0 +1,17 @@
+body{
+  font-family: 'Kumbh Sans', sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  color: yellow;
+  text-shadow: 2px 2px black;
+  background-color: blue;
+}
+
+p{
+  margin: 0;
+  padding: 0;
+}
+
+#author{
+  padding-top: 25px;
+}
