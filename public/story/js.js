@@ -43,8 +43,8 @@ function readText(){
 
 
 
-$(document).ready(function(){
+$(window).on('load', function(){
+  $("body").trigger("click");
   getStory();
   sound.play();
-  $("body").trigger("click");
-})
+});
