@@ -4,7 +4,12 @@ let text;
 let author;
 
 var sound = new Howl({
-  src: ['ambience.mp3']
+  src: ['ambience.mp3'],
+  onplayerror: function() {
+    sound.once('unlock', function() {
+      sound.play();
+    });
+  }
 });
 
 
