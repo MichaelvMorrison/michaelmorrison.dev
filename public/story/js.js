@@ -3,6 +3,10 @@ let i = 0;
 let text;
 let author;
 
+var sound = new Howl({
+  src: ['ambience.mp3']
+});
+
 
 
 function getStory(){
@@ -36,4 +40,5 @@ function readText(){
 
 $(document).ready(function(){
   getStory();
+  sound.play();
 })
