@@ -31,7 +31,6 @@ function handleResize(){
     ctx.canvas.width  = window.innerWidth;
     ctx.canvas.height = window.innerHeight;
     ctx.translate(-0.5*pattern_W, 0);
-    $('html').html('');
   });
 
   // $(window).on("orientationchange", function() {
