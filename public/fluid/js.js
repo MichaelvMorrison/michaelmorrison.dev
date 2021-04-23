@@ -23,7 +23,6 @@ function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
   frameRate(60);
   if (window.innerWidth < 1000){
-    console.log('y');
     diff = 0.000004;
   }
   fluid = new Fluid(0.5, diff, 0);
