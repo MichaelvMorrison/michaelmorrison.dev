@@ -34,7 +34,7 @@ class Fluid {
         let y = j * SCALE;
         let d = this.density[IX(i,j)];
         colorMode(HSB);
-        fill(hue_offset + (t*50) % 360, 100, d);
+        fill((hue_offset + (t*50)) % 360, 100, d);
         rect(x, y, SCALE, SCALE);
       }
     }
