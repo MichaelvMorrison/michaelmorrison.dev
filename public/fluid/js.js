@@ -13,6 +13,8 @@ let cy_prev = 0;
 let cx = 0;
 let cy = 0;
 
+let diff = 0.0000001;
+
 let fluid;
 
 function setup() {
@@ -20,7 +22,13 @@ function setup() {
   background(0);
   createCanvas(window.innerWidth, window.innerHeight);
   frameRate(60);
-  fluid = new Fluid(0.5, 0.0000001, 0);
+  if (window.innerWidth < 1000){
+    console.log('y');
+    diff = 0.000004;
+  }
+  fluid = new Fluid(0.5, diff, 0);
+
+
 }
 
 function draw() {
