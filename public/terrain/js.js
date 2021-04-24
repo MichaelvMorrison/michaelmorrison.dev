@@ -1,4 +1,5 @@
-const SCALE = 50;
+let X_SCALE = 50;
+let Y_SCALE = 50;
 let cols, rows;
 let w = window.innerWidth;
 let h = window.innerHeight;
@@ -7,6 +8,7 @@ let x_offset = 1500;
 let y_offset = 500;
 
 let x_noise, y_noise;
+let noise_range = 200;
 
 let y_loc = 0;
 
@@ -18,10 +20,14 @@ function IX(x, y){
 
 
 function setup(){
+  if (w < 1000){
+    X_SCALE = 20;
+    noise_range = 150;
+  }
   createCanvas(w, h, WEBGL);
 
-  cols = (w + x_offset) / SCALE;
-  rows = (h + y_offset) / SCALE;
+  cols = (w + x_offset) / X_SCALE;
+  rows = (h + y_offset) / Y_SCALE;
   heights = new Array(w * h).fill(0);
 }
 
@@ -31,7 +37,7 @@ function draw(){
   for (let y = 0; y < rows; y++){
     x_noise = 0;
     for (let x = 0; x < cols; x++){
-      heights[IX(x, y)] = map(noise(x_noise,y_noise), 0, 1, -200, 200);
+      heights[IX(x, y)] = map(noise(x_noise,y_noise), 0, 1, -noise_range, noise_range);
       x_noise += 0.2;
     }
     y_noise += 0.2;
@@ -48,8 +54,8 @@ function draw(){
   for (let y = 0; y < rows-1; y++){
     beginShape(TRIANGLE_STRIP);
     for (let x = 0; x < cols; x++){
-      vertex(x*SCALE, y*SCALE, heights[IX(x, y)]);
-      vertex(x*SCALE, (y+1)*SCALE, heights[IX(x, y+1)]);
+      vertex(x*X_SCALE, y*Y_SCALE, heights[IX(x, y)]);
+      vertex(x*X_SCALE, (y+1)*Y_SCALE, heights[IX(x, y+1)]);
     }
     endShape();
   }
@@ -59,8 +65,13 @@ function windowResized(){
   w = window.innerWidth;
   h = window.innerHeight;
 
-  cols = (w + x_offset) / SCALE;
-  rows = (h + y_offset) / SCALE;
+  if (w < 1000){
+    X_SCALE = 20;
+    noise_range = 150;
+  }
+
+  cols = (w + x_offset) / X_SCALE;
+  rows = (h + y_offset) / Y_SCALE;
   heights = new Array(w * h).fill(0);
 
   for (let y = 0; y < rows; y++){
