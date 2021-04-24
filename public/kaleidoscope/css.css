@@ -3,6 +3,18 @@ body {
   padding:0;
   overflow: hidden;
 }
+
 canvas {
   margin:0;
+}
+
+p.reference{
+  padding: 3px;
+  background-color:#36486B;
+  color: #BEBEBE;
+  margin: 0;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 100;
 }
