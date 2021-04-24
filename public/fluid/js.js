@@ -5,6 +5,7 @@ let N = Math.ceil(window.innerWidth / SCALE);
 let M = Math.ceil(window.innerHeight / SCALE);
 
 let t = 0;
+let hue;
 let hue_offset;
 
 let cx_prev = 0;
