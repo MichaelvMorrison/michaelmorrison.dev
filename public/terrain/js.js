@@ -8,7 +8,6 @@ let x_offset = 1500;
 let y_offset = 500;
 
 let x_noise, y_noise;
-let noise_range = 200;
 
 let y_loc = 0;
 
@@ -20,10 +19,6 @@ function IX(x, y){
 
 
 function setup(){
-  if (w < 1000){
-    X_SCALE = 20;
-    noise_range = 150;
-  }
   createCanvas(w, h, WEBGL);
 
   cols = (w + x_offset) / X_SCALE;
@@ -37,7 +32,7 @@ function draw(){
   for (let y = 0; y < rows; y++){
     x_noise = 0;
     for (let x = 0; x < cols; x++){
-      heights[IX(x, y)] = map(noise(x_noise,y_noise), 0, 1, -noise_range, noise_range);
+      heights[IX(x, y)] = map(noise(x_noise,y_noise), 0, 1, -200, 200);
       x_noise += 0.2;
     }
     y_noise += 0.2;
@@ -64,11 +59,6 @@ function draw(){
 function windowResized(){
   w = window.innerWidth;
   h = window.innerHeight;
-
-  if (w < 1000){
-    X_SCALE = 20;
-    noise_range = 150;
-  }
 
   cols = (w + x_offset) / X_SCALE;
   rows = (h + y_offset) / Y_SCALE;
