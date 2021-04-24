@@ -45,7 +45,7 @@ function draw(){
 
   rotateX(PI/3);
 
-  translate((-w - x_offset)/2, (-h - y_offset)/2 - 200);
+  translate((-w - x_offset)/2, (-h - y_offset)/2 - 150);
   for (let y = 0; y < rows-1; y++){
     beginShape(TRIANGLE_STRIP);
     for (let x = 0; x < cols; x++){
