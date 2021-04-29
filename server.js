@@ -58,11 +58,7 @@ app.get('/p5', function(req, res){
   res.sendFile(__dirname + '/node_modules/p5/lib/p5.min.js');
 });
 
-app.get('/jquery', function(req, res){
-  res.type('application/javascript');
-  console.log(res.get('Content-type'));
-  res.sendFile(__dirname + '/node_modules/jquery/dist/jquery.min.js');
-});
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/jquery.min.js'));
 
 app.post('/newPath', function(req, res){
   let newPathEntry = new pathModel();
