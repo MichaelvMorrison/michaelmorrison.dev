@@ -1,11 +1,12 @@
 let cWidth;
 let cHeight;
 
-const RESOLUTION_SCALE = 25;
+const RESOLUTION_SCALE = 50;
 const NOISE_SCALE = 0.1;
 const TIME_SCALE = 0.005;
-let FIELD_MAGNITUDE = 0.1;
-const MOUSE_RADIUS = 50;
+const FIELD_MAGNITUDE = 0.1;
+let NUM_PARTICLES;
+let MAX_SPEED;
 
 let cols, rows;
 let time = 0;
@@ -59,11 +60,13 @@ function drawParticles(){
 function setup(){
   cWidth = window.innerWidth;
   cHeight = window.innerHeight; 
+  NUM_PARTICLES = floor(cWidth * cHeight * 0.00120563);
+  MAX_SPEED = ceil(cWidth * cHeight * 0.00000193);
   createCanvas(cWidth, cHeight);
   cols = ceil(width / RESOLUTION_SCALE);
   rows = ceil(height / RESOLUTION_SCALE);
 
-  for (let i = 0; i < 2500; i++){
+  for (let i = 0; i < NUM_PARTICLES; i++){
     particles[i] = new Particle();
   }
 
@@ -90,9 +93,17 @@ function mouseReleased(){
 
 function windowResized(){
   cWidth = window.innerWidth;
-  cHeight = window.innerHeight; 
+  cHeight = window.innerHeight;
+  NUM_PARTICLES = floor(cWidth * cHeight * 0.00120563);
+  MAX_SPEED = ceil(cWidth * cHeight * 0.00000193);
   resizeCanvas(cWidth, cHeight);
 
   cols = ceil(width / RESOLUTION_SCALE);
   rows = ceil(height / RESOLUTION_SCALE);
+
+  for (let i = 0; i < NUM_PARTICLES; i++){
+    particles[i] = new Particle();
+  }
+
+  field = new Array(cols * rows);
 }
