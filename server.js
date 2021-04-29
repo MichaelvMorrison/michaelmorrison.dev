@@ -58,7 +58,8 @@ app.get('/p5', function(req, res){
 });
 
 app.get('/jquery', function(req, res){
-  res.type('text/javascript');
+  res.setHeader('content-type', 'text/javascript')
+  res.type('application/javascript');
   res.sendFile(__dirname + '/node_modules/jquery/dist/jquery.min.js');
 });
 
