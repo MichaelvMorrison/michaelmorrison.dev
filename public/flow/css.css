@@ -7,7 +7,58 @@ canvas {
   margin:auto;
 }
 
+#tips{
+  display: none;
+  border: 5px solid black;
+  background: white;
+  padding: 1rem;
+  color: #615e5e;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: auto;
+  font-family: Courier, monospace;
+  transform: translate(-50%, -50%);
+}
+
+#help{
+  display: none;
+  margin: 0;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 100;
+  font-size: 1.5rem;
+  color: black;
+  background: white;
+  padding: 0.25rem;
+  border: 2px solid black;
+}
+
+#help:hover{
+  cursor: pointer;
+}
+
+.tip-text{
+  padding-left: 1rem;
+}
+
+.center{
+  text-align:center;
+}
+
+.icon{
+  width: 2rem;
+  height: 2rem;
+  padding-right: .25rem;
+}
+
+.tip{
+  margin-top: 0;
+}
+
 .fr{
+  margin: 0;
   border: 5px solid black;
   font-size: 2rem;
   position: absolute;
@@ -20,13 +71,15 @@ canvas {
 }
 
 p.reference{
-  font-size: 0.75rem;
-  border: 2px solid black;
+  margin: 0;
   position: absolute;
   bottom: 10px;
   right: 10px;
   z-index: 100;
+  font-size: 0.75rem;
+  border: 2px solid black;
   color: black;
   background: white;
   padding: 0.5rem;
 }
+

@@ -16,7 +16,9 @@ let x, y, angle
 let field = [];
 let particles = [];
 
-let mp = false;
+let inspire = false;
+let daunt = false;
+let erase = false;
 
 function IX(x, y){
   return (x + y * cols);
@@ -25,8 +27,11 @@ function IX(x, y){
 function calculateField(){
   for (y = 0; y < rows; y++){
     for (x = 0; x < cols; x++){
-      if(mp){
+      if(inspire){
         v = createVector(mouseX - (x * RESOLUTION_SCALE), mouseY - (y * RESOLUTION_SCALE));
+      }
+      else if(daunt){
+        v = createVector(-(mouseX - (x * RESOLUTION_SCALE)), -(mouseY - (y * RESOLUTION_SCALE)));
       }
       else{
         angle = noise(x * NOISE_SCALE, y * NOISE_SCALE, time * TIME_SCALE) * TWO_PI * 2;
@@ -36,6 +41,9 @@ function calculateField(){
       field[IX(x,y)] = v;
       // drawField();
     }
+  }
+  if (daunt){
+    daunt = false;
   }
 }
 
@@ -57,6 +65,25 @@ function drawParticles(){
   }
 }
 
+function keyPressed(){
+  if(keyCode === 32){
+    erase = true;
+  }
+}
+
+function mouseDragged(){
+  if (keyIsDown(CONTROL)){
+    daunt = true;
+  }else{
+    inspire = true;
+  }
+}
+
+function mouseReleased(){
+  daunt = false;
+  inspire = false;
+}
+
 function setup(){
   cWidth = window.innerWidth;
   cHeight = window.innerHeight; 
@@ -74,21 +101,16 @@ function setup(){
 }
 
 function draw(){
-  // background(255);
+  if (erase){
+    background(255);
+    erase = false;
+  }
   calculateField();
 
   drawParticles();
   
   time++;
   $('.fr').html(floor(frameRate()));
-}
-
-function mouseDragged(){
-  mp = true;
-}
-
-function mouseReleased(){
-  mp = false;
 }
 
 function windowResized(){
@@ -107,3 +129,31 @@ function windowResized(){
 
   field = new Array(cols * rows);
 }
+
+$(window).on("load", function(){
+  function animateTips(){
+    $('#tips').animate({
+      height: 'toggle',
+      opacity: 'toggle'
+    }, 1000, 'swing');
+  }
+
+  function animateTipsOut(){
+    $('#tips').animate({
+      height: 'toggle',
+      opacity: 'toggle'
+    }, 1000, 'swing');
+
+    $('#help').animate({
+      opacity: 'toggle'
+    }, 1000, 'swing');
+  }
+
+  setTimeout(animateTips, 200);
+  setTimeout(animateTipsOut, 5200);
+
+  $('#help').on('click', function(){
+    animateTips();
+  })
+  
+});
