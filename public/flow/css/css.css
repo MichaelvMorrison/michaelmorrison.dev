@@ -7,18 +7,22 @@ canvas {
   margin:auto;
 }
 
-#tips{
+#tips-container{
   display: none;
-  border: 5px solid black;
-  background: white;
-  padding: 1rem;
-  color: #615e5e;
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+}
+
+#tips{
+  border: 5px solid black;
+  background: white;
+  padding: 1rem;
+  color: black;
   margin: auto;
   font-family: Courier, monospace;
-  transform: translate(-50%, -50%);
 }
 
 #help{
@@ -39,6 +43,29 @@ canvas {
   cursor: pointer;
 }
 
+#x{
+  position: absolute;
+  right: .25rem;
+  top: .25rem;
+  background: white;
+  border: 2px solid black;
+  color: black;
+  padding: .5rem;
+}
+
+#x:hover{
+  cursor: pointer;
+}
+
+.my-2{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.ta-r{
+  text-align: right;
+}
+
 .tip-text{
   padding-left: 1rem;
 }
@@ -55,6 +82,11 @@ canvas {
 
 .tip{
   margin-top: 0;
+}
+
+.ui-state-default{
+  background-color: black !important;
+  border-color: black !important;
 }
 
 .fr{

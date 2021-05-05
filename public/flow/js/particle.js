@@ -5,7 +5,6 @@ class Particle {
     this.acc = createVector(0, 0);
     this.vMax = MAX_SPEED;
     this.prevPos = this.pos.copy();
-    this.color = color(0, 5);
   }
 
   update(){
@@ -20,8 +19,8 @@ class Particle {
     this.acc.add(f);
   }
 
-  show(){
-    stroke(this.color);
+  show(color){
+    stroke(color);
     strokeWeight(2);
     line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
     this.updatePrevious();

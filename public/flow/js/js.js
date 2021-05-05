@@ -8,6 +8,8 @@ const FIELD_MAGNITUDE = 0.1;
 let NUM_PARTICLES;
 let MAX_SPEED;
 
+let particle_color;
+
 let cols, rows;
 let time = 0;
 
@@ -19,6 +21,9 @@ let particles = [];
 let inspire = false;
 let daunt = false;
 let erase = false;
+let path = true;
+let reset_path = false;
+let opacity = 5;
 
 function IX(x, y){
   return (x + y * cols);
@@ -60,14 +65,22 @@ function drawField(){
 function drawParticles(){
   for(let i = 0; i < particles.length; i++){
     particles[i].follow(field);
-    particles[i].show();
+    particles[i].show(particle_color);
     particles[i].update();
   }
 }
 
 function keyPressed(){
-  if(keyCode === 32){
+  if(keyCode === 8){ // Backspace
     erase = true;
+  }else if(keyCode === 32){ //space
+    if (path){
+      particle_color.setAlpha(opacity * 5);
+    }else{
+      particle_color.setAlpha(opacity);
+      reset_path = true;
+    }
+    path = !path;
   }
 }
 
@@ -98,16 +111,22 @@ function setup(){
   }
 
   field = new Array(cols * rows);
+  particle_color = color(random(0,255), random(0,255), random(0,255), opacity);
 }
 
 function draw(){
-  if (erase){
+  if (erase || !path){
     background(255);
     erase = false;
   }
   calculateField();
 
   drawParticles();
+
+  if(reset_path){
+    background(255);
+    reset_path = false;
+  }
   
   time++;
   $('.fr').html(floor(frameRate()));
@@ -131,29 +150,58 @@ function windowResized(){
 }
 
 $(window).on("load", function(){
-  function animateTips(){
-    $('#tips').animate({
-      height: 'toggle',
-      opacity: 'toggle'
-    }, 1000, 'swing');
-  }
 
-  function animateTipsOut(){
-    $('#tips').animate({
-      height: 'toggle',
-      opacity: 'toggle'
+  function handleTips(){
+    function handleSlider(){
+      $( "#alpha" ).slider({
+      value: 5,
+      min: 0,
+      max: 25,
+      });
+
+      $("#alpha").on("slide", function(event, ui) {
+        opacity = ui.value;
+        particle_color.setAlpha(opacity);
+      });
+    }
+
+    function animateTips(){
+    $('#tips-container').animate({
+    height: 'toggle',
+    opacity: 'toggle'
+    }, 1000, 'swing');
+    }
+
+    function animateTipsOut(){
+    $('#tips-container').animate({
+    height: 'toggle',
+    opacity: 'toggle'
     }, 1000, 'swing');
 
+    if($('#help').css("display") == "none"){
     $('#help').animate({
       opacity: 'toggle'
     }, 1000, 'swing');
+    }
+
+    }
+
+    $('#help').on('click', function(){
+    animateTips();
+    });
+
+    $('#x').on('click', function(){
+    animateTipsOut();
+    })
+
+    setTimeout(animateTips, 200);
+
+    ColorPicker($('#cp')[0],function(hex, hsv, rgb) {
+      particle_color = color('rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',' + opacity/255 + ')');
+    });
+
+    handleSlider();
   }
 
-  setTimeout(animateTips, 200);
-  setTimeout(animateTipsOut, 5200);
-
-  $('#help').on('click', function(){
-    animateTips();
-  })
-  
+  handleTips();
 });

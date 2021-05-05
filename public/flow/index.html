@@ -5,30 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>flow</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link rel="stylesheet" href="css.css">
-    <script src="/p5" type="text/javascript"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/cp.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js.js"></script>
-    <script src="particle.js" ></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/p5" type="text/javascript"></script>
+    <script src="js/js.js"></script>
+    <script src="js/particle.js" ></script>
+    <script src="js/cp.js"></script>
   </head>
   <body>
     <!-- <p class="fr">0</p> -->
-    <div id="tips">
-      <table>
-        <tr>
-          <td class="center"><img class="icon" src="img/m1.svg" alt="m1"></td>
-          <td class="tip-text">Inspire</td>
-        </tr>
-        <tr>
-          <td class="center"><img class="icon" src="img/ctrl.svg" alt="m1"> <img class="icon" src="img/m1.svg" alt="m1"></td>
-          <td class="tip-text">Daunt</td>
-        </tr>
-        <tr>
-          <td class="center"><img class="icon" src="img/space.svg" alt="m1"></td>
-          <td class="tip-text">Erase</td>
-        </tr>
-      </table>
+    <div id="tips-container">
+      <div id="tips">
+        <div><span id="x">x</span></div>
+        <table>
+          <tr>
+            <td class="center"><img class="icon" src="img/m1.svg" alt="m1"></td>
+            <td class="tip-text">Inspire</td>
+          </tr>
+          <tr>
+            <td class="center"><img class="icon" src="img/ctrl.svg" alt="m1"> <img class="icon" src="img/m1.svg" alt="m1"></td>
+            <td class="tip-text">Daunt</td>
+          </tr>
+          <tr>
+            <td class="center"><img class="icon" src="img/backspace.svg" alt="m1"></td>
+            <td class="tip-text">Erase</td>
+          </tr>
+          <tr>
+            <td class="center"><img class="icon" src="img/space.svg" alt="m1"></td>
+            <td class="tip-text">Path</td>
+          </tr>
+          <tr>
+            <td class="center"><div id="cp" class="cp-default"></div></td>
+            <td class="tip-text">Color</td>
+          </tr>
+          <tr>
+            <td class="center"><div id="alpha" class="my-2"></div></td>
+            <td class="tip-text">Alpha</td>
+          </tr>
+        </table>
+      </div>
     </div>
+
     <a href="https://thecodingtrain.com/CodingChallenges/024-perlinnoiseflowfield.html" target="__blank"><p class="reference">Coding Train</p></a>
     <p id="help"><i class="fas fa-question-circle"></i></p>
     

@@ -1,0 +1,48 @@
+/* https://github.com/DavidDurman/FlexiColorPicker */
+
+.picker-wrapper, 
+.slide-wrapper {
+    position: relative;
+    float: left;
+}
+.picker-indicator,
+.slide-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+}
+.picker,
+.slide {
+    cursor: crosshair;
+    float: left;
+}
+
+/* Default skin */
+
+.cp-default {
+    background-color: white;
+    padding: 5px;
+    float: left;
+    border: 3px solid black;
+}
+.cp-default .picker {
+    width: 75px;
+    height: 75px;
+}
+.cp-default .slide {
+    width: 12px;
+    height: 75px;
+}
+
+.cp-default .slide-wrapper {
+    margin-left: 5px;
+}
+
+.cp-default .slide-indicator {
+    width: 100%;
+    height: 5px;
+    left: -2px;
+    border: 2px solid black;
+    background-color: transparent;
+}
