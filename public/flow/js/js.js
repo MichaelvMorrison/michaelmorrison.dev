@@ -85,10 +85,12 @@ function keyPressed(){
 }
 
 function mouseDragged(){
-  if (keyIsDown(CONTROL)){
-    daunt = true;
-  }else{
-    inspire = true;
+  if($('#tips-container:hover').length == 0){
+    if (keyIsDown(CONTROL)){
+      daunt = true;
+    }else{
+      inspire = true;
+    }
   }
 }
 
