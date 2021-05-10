@@ -1,4 +1,3 @@
-//General Analysis
 var thickness = 1;
 var _thickness = 1;
 var _mpod = 0.5, _t = 1, _d = 1, _p = 0;
