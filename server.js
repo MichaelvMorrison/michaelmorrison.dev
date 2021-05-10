@@ -42,10 +42,6 @@ function newConnection(socket){
   });
 }
 
-function sendData(data){
-  console.log(data);
-}
-
 //ROUTES
 app.get('/paper', function(req, res){
   res.type('application/javascript');
