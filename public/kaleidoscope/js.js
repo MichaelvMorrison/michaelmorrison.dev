@@ -164,6 +164,7 @@ function tile() {
 }
 
 $(function () {
+  console.log(img.complete);
   getScale();
   createImg();
 
