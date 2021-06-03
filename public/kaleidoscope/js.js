@@ -177,6 +177,6 @@ $(function () {
   if (_img.complete) {
     main();
   } else {
-    img.addEventListener("load", main);
+    _img.addEventListener("load", main);
   }
 });
