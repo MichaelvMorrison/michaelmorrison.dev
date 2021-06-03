@@ -163,12 +163,20 @@ function tile() {
   }
 }
 
-$(function () {
-  console.log($("#img")[0].complete);
+function main() {
   getScale();
   createImg();
 
   handleResize();
   setup();
   start();
+}
+
+$(function () {
+  const _img = $("#img")[0];
+  if (_img.complete) {
+    main();
+  } else {
+    img.addEventListener("load", main);
+  }
 });
