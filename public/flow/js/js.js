@@ -13,7 +13,7 @@ let particle_color;
 let cols, rows;
 let time = 0;
 
-let x, y, angle
+let x, y, angle;
 
 let field = [];
 let particles = [];
@@ -27,34 +27,41 @@ let opacity = 5;
 
 let mobile = false;
 
-function IX(x, y){
-  return (x + y * cols);
+function IX(x, y) {
+  return x + y * cols;
 }
 
-function calculateField(){
-  for (y = 0; y < rows; y++){
-    for (x = 0; x < cols; x++){
-      if(inspire){
-        v = createVector(mouseX - (x * RESOLUTION_SCALE), mouseY - (y * RESOLUTION_SCALE));
-      }
-      else if(daunt){
-        v = createVector(-(mouseX - (x * RESOLUTION_SCALE)), -(mouseY - (y * RESOLUTION_SCALE)));
-      }
-      else{
-        angle = noise(x * NOISE_SCALE, y * NOISE_SCALE, time * TIME_SCALE) * TWO_PI * 2;
+function calculateField() {
+  for (y = 0; y < rows; y++) {
+    for (x = 0; x < cols; x++) {
+      if (inspire) {
+        v = createVector(
+          mouseX - x * RESOLUTION_SCALE,
+          mouseY - y * RESOLUTION_SCALE
+        );
+      } else if (daunt) {
+        v = createVector(
+          -(mouseX - x * RESOLUTION_SCALE),
+          -(mouseY - y * RESOLUTION_SCALE)
+        );
+      } else {
+        angle =
+          noise(x * NOISE_SCALE, y * NOISE_SCALE, time * TIME_SCALE) *
+          TWO_PI *
+          2;
         v = p5.Vector.fromAngle(angle);
       }
       v.setMag(FIELD_MAGNITUDE);
-      field[IX(x,y)] = v;
+      field[IX(x, y)] = v;
       // drawField();
     }
   }
-  if (daunt){
+  if (daunt) {
     daunt = false;
   }
 }
 
-function drawField(){
+function drawField() {
   stroke(0);
   strokeWeight(1);
   push();
@@ -64,21 +71,23 @@ function drawField(){
   pop();
 }
 
-function drawParticles(){
-  for(let i = 0; i < particles.length; i++){
+function drawParticles() {
+  for (let i = 0; i < particles.length; i++) {
     particles[i].follow(field);
     particles[i].show(particle_color);
     particles[i].update();
   }
 }
 
-function keyPressed(){
-  if(keyCode === 8){ // Backspace
+function keyPressed() {
+  if (keyCode === 8) {
+    // Backspace
     erase = true;
-  }else if(keyCode === 32){ //space
-    if (path){
+  } else if (keyCode === 32) {
+    //space
+    if (path) {
       particle_color.setAlpha(opacity * 5);
-    }else{
+    } else {
       particle_color.setAlpha(opacity);
       reset_path = true;
     }
@@ -86,40 +95,45 @@ function keyPressed(){
   }
 }
 
-function mouseDragged(){
-  if($('#tips-container:hover').length == 0){
-    if (keyIsDown(CONTROL)){
+function mouseDragged() {
+  if ($("#tips-container:hover").length == 0) {
+    if (keyIsDown(CONTROL)) {
       daunt = true;
-    }else{
+    } else {
       inspire = true;
     }
   }
 }
 
-function mouseReleased(){
+function mouseReleased() {
   daunt = false;
   inspire = false;
 }
 
-function setup(){
+function setup() {
   cWidth = window.innerWidth;
-  cHeight = window.innerHeight; 
+  cHeight = window.innerHeight;
   NUM_PARTICLES = floor(cWidth * cHeight * 0.00120563);
   MAX_SPEED = ceil(cWidth * cHeight * 0.00000193);
   createCanvas(cWidth, cHeight);
   cols = ceil(width / RESOLUTION_SCALE);
   rows = ceil(height / RESOLUTION_SCALE);
 
-  for (let i = 0; i < NUM_PARTICLES; i++){
+  for (let i = 0; i < NUM_PARTICLES; i++) {
     particles[i] = new Particle();
   }
 
   field = new Array(cols * rows);
-  particle_color = color(random(0,255), random(0,255), random(0,255), opacity);
+  particle_color = color(
+    random(0, 255),
+    random(0, 255),
+    random(0, 255),
+    opacity
+  );
 }
 
-function draw(){
-  if (erase || !path){
+function draw() {
+  if (erase || !path) {
     background(255);
     erase = false;
   }
@@ -127,16 +141,16 @@ function draw(){
 
   drawParticles();
 
-  if(reset_path){
+  if (reset_path) {
     background(255);
     reset_path = false;
   }
-  
+
   time++;
-  $('.fr').html(floor(frameRate()));
+  $(".fr").html(floor(frameRate()));
 }
 
-function windowResized(){
+function windowResized() {
   cWidth = window.innerWidth;
   cHeight = window.innerHeight;
   NUM_PARTICLES = floor(cWidth * cHeight * 0.00120563);
@@ -146,76 +160,95 @@ function windowResized(){
   cols = ceil(width / RESOLUTION_SCALE);
   rows = ceil(height / RESOLUTION_SCALE);
 
-  for (let i = 0; i < NUM_PARTICLES; i++){
+  for (let i = 0; i < NUM_PARTICLES; i++) {
     particles[i] = new Particle();
   }
 
   field = new Array(cols * rows);
 }
 
-$(window).on("load", function(){
-
-  function handleTips(){
-    function handleSlider(){
-      $( "#alpha" ).slider({
-      value: 5,
-      min: 0,
-      max: 25,
+$(window).on("load", function () {
+  function handleTips() {
+    function handleSlider() {
+      $("#alpha").slider({
+        value: 5,
+        min: 0,
+        max: 25,
       });
 
-      $("#alpha").on("slide", function(event, ui) {
+      $("#alpha").on("slide", function (event, ui) {
         opacity = ui.value;
         particle_color.setAlpha(opacity);
       });
     }
 
-    function animateTips(){
-    $('#tips-container').animate({
-    height: 'toggle',
-    opacity: 'toggle'
-    }, 1000, 'swing');
+    function animateTips() {
+      $("#tips-container").animate(
+        {
+          height: "toggle",
+          opacity: "toggle",
+        },
+        1000,
+        "swing"
+      );
     }
 
-    function animateTipsOut(){
-    $('#tips-container').animate({
-    height: 'toggle',
-    opacity: 'toggle'
-    }, 1000, 'swing');
+    function animateTipsOut() {
+      $("#tips-container").animate(
+        {
+          height: "toggle",
+          opacity: "toggle",
+        },
+        1000,
+        "swing"
+      );
 
-    if($('#help').css("display") == "none"){
-    $('#help').animate({
-      opacity: 'toggle'
-    }, 1000, 'swing');
+      if ($("#help").css("display") == "none") {
+        $("#help").animate(
+          {
+            opacity: "toggle",
+          },
+          1000,
+          "swing"
+        );
+      }
     }
 
-    }
-
-    $('#help').on('click', function(){
-    animateTips();
+    $("#help").on("click", function () {
+      animateTips();
     });
 
-    $('#x').on('click', function(){
-    animateTipsOut();
-    })
+    $("#x").on("click", function () {
+      animateTipsOut();
+    });
 
     setTimeout(animateTips, 200);
 
-    ColorPicker($('#cp')[0],function(hex, hsv, rgb) {
-      particle_color = color('rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',' + opacity/255 + ')');
+    ColorPicker($("#cp")[0], function (hex, hsv, rgb) {
+      particle_color = color(
+        "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + "," + opacity / 255 + ")"
+      );
     });
 
     handleSlider();
   }
 
-  function checkMobile(){
-    if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0,4))) { 
+  function checkMobile() {
+    if (
+      /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(
+        navigator.userAgent
+      ) ||
+      /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(
+        navigator.userAgent.substr(0, 4)
+      )
+    ) {
       mobile = true;
     }
   }
 
   checkMobile();
-  
-  if(!mobile){
+
+  if (!mobile) {
     handleTips();
   }
 });
